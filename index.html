@@ -1,1 +1,91 @@
-Hello World
+Caesar-Entschlüsselung:<br>
+<input type="text" id="entcae" name="textinhaltentcae">
+<input type="number" id="verschieb" value="1" name="verschiebung">
+<input type="Submit" value="Verschlüsseln" onClick="Entschlusseln()">
+<br>
+<p id="caeausg"></p>
+Binär-Codierung:
+<br>
+<input type="text" id="bincode" name="textinhaltbin"> <input type="Submit" value="Codieren" onClick="Decodieren()">
+<p id="binausg"></p>
+
+<script>
+    var alphabet = "abcdefghijklmnopqrstuvwxyz";
+    
+    function Entschlusseln(){
+        var ursprung = document.getElementById('entcae').value;
+        var verschiebung = document.getElementById('verschieb').value;
+        
+        var verschlusselt = "";
+        
+        for (var i = 0; i < ursprung.length; i++) {
+            var n = alphabet.indexOf(ursprung.charAt(i).toLocaleLowerCase());
+            
+            if (n == -1) {
+                verschlusselt += "?";
+                
+                continue;
+            }
+            
+            n -= verschiebung;
+            
+            n %= alphabet.length;
+            
+            while (n < 0) {
+                n += alphabet.length;
+            }
+            
+            if (ursprung.charAt(i) == ursprung.charAt(i).toUpperCase()) {
+                verschlusselt += alphabet[n].toUpperCase();
+            }
+            else {
+                verschlusselt += alphabet[n];
+            }
+        }
+        
+        document.getElementById("caeausg").innerHTML = verschlusselt;
+    }
+    
+    function Decodieren(){
+        var ursprung = document.getElementById('bincode').value;
+        var verschlusselt = "";
+        
+        var c = 4;
+        var n = 0;
+        
+        for (var i = 0; i < ursprung.length; i++) {
+            if (ursprung.charAt(i) == "1") {
+                n += Math.pow(2, c);
+            }
+            else if (ursprung.charAt(i) != "0") {
+                if (verschlusselt.charAt(verschlusselt.length-1) != "?") {
+                    verschlusselt += "?";
+                }
+                
+                continue;
+            }
+            
+            if (c == 0) {
+                c = 4;
+                
+                if (n > 0 && n <= alphabet.length) {
+                    verschlusselt += alphabet[n-1];
+                }
+                else if (verschlusselt.charAt(verschlusselt.length-1) != "?") {
+                    verschlusselt += "?";
+                }
+                
+                n = 0;
+            }
+            else {
+                c -= 1;
+            }
+        }
+        
+        if (c != 4 && verschlusselt.charAt(verschlusselt.length-1) != "?") {
+            verschlusselt += "?";
+        }
+        
+        document.getElementById("binausg").innerHTML = verschlusselt;
+    }
+</script>
