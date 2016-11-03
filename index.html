@@ -22,6 +22,8 @@ Binär-Codierung:
             var n = alphabet.indexOf(ursprung.charAt(i).toLocaleLowerCase());
             
             if (n == -1) {
+                
+                if(ursprung.charAt(i)==" "){verschlusselt+=" ";}
                 verschlusselt += "?";
                 
                 continue;
