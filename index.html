@@ -1,13 +1,22 @@
-Caesar-Entschlüsselung:<br>
-<input type="text" id="entcae" name="textinhaltentcae">
-<input type="number" id="verschieb" value="1" name="verschiebung">
-<input type="Submit" value="Verschlüsseln" onClick="Entschlusseln()">
-<br>
-<p id="caeausg"></p>
-Binär-Codierung:
-<br>
+<center> <FONT FACE="Trebuchet MS">
+<H4><b>Caesar-Entschlüsselung</b></H4>
+
+Verschlüsselter Text:
+<input type="text" id="entcae" name="textinhaltentcae"> <br>
+
+Verschiebung:
+<input type="number" id="verschieb" value="1" name="verschiebung"> <br>
+    
+<input type="Submit" value="Verschlüsseln" onClick="Entschlusseln()"> <br>
+    
+<p id="caeausg"><i>Ergebnis: </i></p>
+    
+<H4><b>Binär-Codierung</b></H4>
+    
+Binäre Zahlenfolge:
 <input type="text" id="bincode" name="textinhaltbin"> <input type="Submit" value="Codieren" onClick="Decodieren()">
-<p id="binausg"></p>
+    
+<p id="binausg"><i>Ergebnis: </i></p></FONT></center>
 
 <script>
     var alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -46,7 +55,7 @@ Binär-Codierung:
             }
         }
         
-        document.getElementById("caeausg").innerHTML = verschlusselt;
+        document.getElementById("caeausg").innerHTML += verschlusselt;
     }
     
     function Decodieren(){
@@ -89,6 +98,6 @@ Binär-Codierung:
             verschlusselt += "?";
         }
         
-        document.getElementById("binausg").innerHTML = verschlusselt;
+        document.getElementById("binausg").innerHTML += verschlusselt;
     }
 </script>
